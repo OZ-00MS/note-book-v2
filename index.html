@@ -1,87 +1,90 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>NoteBook</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/icon.jpg" type="image/png" />
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-<div class="left">
-<div class="clock-time-game">
-    <div class="clock">
-      <div id="clock"></div>
-      <div id="date"></div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NoteBook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/icon.jpg" type="image/png" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col md:flex-row h-screen bg-gradient-to-br from-blue-600 to-green-600">
+
+  <!-- LEFT PANEL -->
+  <div class="left w-full md:w-1/2 h-screen p-4 flex flex-col gap-3 text-white">
+    <!-- Clock & Game -->
+    <div class="clock-time-game flex-1 flex gap-3 md:flex-row flex-col">
+      <!-- Clock -->
+      <div class="clock flex-1 flex flex-col items-center justify-center gap-2 rounded-2xl p-3 bg-white/10 border border-white/25 backdrop-blur-md shadow-lg">
+        <div id="clock" class="text-4xl font-bold"></div>
+        <div id="date" class="opacity-80 text-base mt-1"></div>
+      </div>
+
+      <!-- Game -->
+      <div class="game flex-1 flex flex-col items-center justify-center gap-1 rounded-2xl p-3 bg-white/10 border border-white/25 backdrop-blur-md shadow-lg">
+        <div id="score" class="text-lg font-semibold"></div>
+        <div id="level" class="text-lg font-semibold"></div>
+        <div class="board grid grid-cols-4 gap-1 w-48 h-48" id="game-board"></div>
+      </div>
     </div>
-    <div class="game">
-      <div id="score"></div>
-      <div id="level"></div>
-      <div class="board" id="game-board"></div>
+
+    <!-- Draw -->
+    <div class="draw flex-1 flex flex-col">
+      <div class="draw-controls flex justify-end items-center gap-2 mb-1">
+        <label class="flex items-center gap-1 text-white text-sm">Color:
+          <input type="color" id="color" value="#000000" class="cursor-pointer">
+        </label>
+        <label class="flex items-center gap-1 text-white text-sm">Size:
+          <input type="range" id="size" min="1" max="50" value="5" class="cursor-pointer">
+        </label>
+        <button id="clearDraw" class="px-2 py-1 rounded-lg bg-white/10 text-white hover:bg-white/30 transition">Clear</button>
+      </div>
+      <canvas id="canvas" class="flex-1 w-full rounded-xl bg-white"></canvas>
     </div>
   </div>
 
-  <!-- DRAW -->
-<div class="draw">
-  <div class="draw-controls">
-    <label>Color:
-      <input type="color" id="color" value="#000000">
-    </label>
-    <label>Size:
-      <input type="range" id="size" min="1" max="50" value="5">
-    </label>
-    <button id="clearDraw">Clear</button>
-  </div>
-  <canvas id="canvas"></canvas>
-</div>
-</div>
-
-
-<div class="right">
+  <!-- RIGHT PANEL -->
+  <div class="right w-full md:w-1/2 h-screen p-6 bg-white/55 backdrop-blur-2xl shadow-inner overflow-y-auto flex flex-col">
 
     <!-- Header -->
-    <header class="header">
-      <h1>My Notes</h1>
-      <div class="header-buttons">
-        <button id="newNoteBtn">New Note</button>
-        <button id="searchBtn">Search</button>
+    <header class="flex justify-between items-center mb-5">
+      <h1 class="text-3xl font-bold text-gray-900">My Notes</h1>
+      <div class="header-buttons flex gap-2">
+        <button id="newNoteBtn" class="px-4 py-2 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-800 transition">New Note</button>
+        <button id="searchBtn" class="px-4 py-2 rounded-lg font-semibold bg-white/80 hover:bg-white transition">Search</button>
       </div>
     </header>
 
     <!-- Search input -->
-    <div id="searchContainer" class="hidden search-container">
-      <input type="text" id="searchInput" placeholder="Search notes...">
+    <div id="searchContainer" class="hidden mb-5">
+      <input type="text" id="searchInput" placeholder="Search notes..." class="w-full p-3 rounded-xl border-none outline-none text-base bg-white/90">
     </div>
 
     <!-- New note form -->
-    <div id="newNoteForm" class="hidden new-note-form">
-      <input type="text" id="noteTitle" placeholder="Note title">
-      <textarea id="noteContent" placeholder="Write your note here..."></textarea>
-      <div class="form-buttons">
-        <button id="cancelBtn">Cancel</button>
-        <button id="saveBtn">Save Note</button>
+    <div id="newNoteForm" class="hidden mb-5 rounded-2xl p-5 bg-white/90 shadow-lg flex flex-col gap-3">
+      <input type="text" id="noteTitle" placeholder="Note title" class="w-full p-3 rounded-xl bg-gray-50 border-none outline-none">
+      <textarea id="noteContent" placeholder="Write your note here..." class="w-full p-3 rounded-xl bg-gray-50 border-none outline-none min-h-[150px] resize-none"></textarea>
+      <div class="form-buttons flex justify-end gap-2">
+        <button id="cancelBtn" class="px-4 py-2 rounded-lg font-semibold bg-gray-200 hover:bg-gray-300 transition">Cancel</button>
+        <button id="saveBtn" class="px-4 py-2 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-800 transition">Save Note</button>
       </div>
     </div>
 
     <!-- Notes container -->
-    <div id="notesContainer" class="notes-container"></div>
+    <div id="notesContainer" class="notes-container grid gap-4 grid-cols-[repeat(auto-fit,minmax(240px,1fr))]"></div>
 
     <!-- Empty state -->
-    <div id="emptyState" class="empty-state hidden">
-      <img src="https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/84977.png" alt="Note book">
-      <h2>No notes yet</h2>
-      <p>Start by creating your first note</p>
-      <button id="emptyStateNewNoteBtn">Create your first note</button>
+    <div id="emptyState" class="hidden text-center mt-10">
+      <img src="https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/84977.png" alt="Note book" class="mx-auto max-w-[220px] mb-4">
+      <h2 class="text-xl font-bold mb-2">No notes yet</h2>
+      <p class="mb-3">Start by creating your first note</p>
+      <button id="emptyStateNewNoteBtn" class="px-5 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-800 transition">Create your first note</button>
     </div>
 
   </div>
 
-</div>
+  <script src="main.js"></script>
 
-
-        
-        <script src="main.js" async defer></script>
-    </body>
+</body>
 </html>
