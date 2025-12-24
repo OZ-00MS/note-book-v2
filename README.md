@@ -30,7 +30,7 @@ JavaScript (Vanilla) – Logic & functionality
 
 Clone the repository:
 
-git clone https://github.com/your-username/notes-app.git
+https://github.com/OZ-00MS/note-book-v2.git
 
 
 Open index.html in your browser
