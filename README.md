@@ -49,6 +49,10 @@ Your notes remain even after refreshing the page
 <img width="1348" height="618" alt="Screenshot 2025-12-24 223704" src="https://github.com/user-attachments/assets/3bc80445-e070-4d88-b67d-34b3e9a28a95" />
 
 
+https://github.com/user-attachments/assets/dcf785b4-f288-4907-841b-b8907607ace5
+
+
+
 
 🔮 Future Improvements
 
