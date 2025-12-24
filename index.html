@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>note app</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/icon.jpg" type="image/png" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+<div class="left">
+<div class="clock-time-game">
+    <div class="clock">
+      <div id="clock"></div>
+      <div id="date"></div>
+    </div>
+    <div class="game">
+      <div id="score"></div>
+      <div id="level"></div>
+      <div class="board" id="game-board"></div>
+    </div>
+  </div>
+
+  <!-- DRAW -->
+<div class="draw">
+  <div class="draw-controls">
+    <label>Color:
+      <input type="color" id="color" value="#000000">
+    </label>
+    <label>Size:
+      <input type="range" id="size" min="1" max="50" value="5">
+    </label>
+    <button id="clearDraw">Clear</button>
+  </div>
+  <canvas id="canvas"></canvas>
+</div>
+</div>
+
+
+<div class="right">
+
+    <!-- Header -->
+    <header class="header">
+      <h1>My Notes</h1>
+      <div class="header-buttons">
+        <button id="newNoteBtn">New Note</button>
+        <button id="searchBtn">Search</button>
+      </div>
+    </header>
+
+    <!-- Search input -->
+    <div id="searchContainer" class="hidden search-container">
+      <input type="text" id="searchInput" placeholder="Search notes...">
+    </div>
+
+    <!-- New note form -->
+    <div id="newNoteForm" class="hidden new-note-form">
+      <input type="text" id="noteTitle" placeholder="Note title">
+      <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+      <div class="form-buttons">
+        <button id="cancelBtn">Cancel</button>
+        <button id="saveBtn">Save Note</button>
+      </div>
+    </div>
+
+    <!-- Notes container -->
+    <div id="notesContainer" class="notes-container"></div>
+
+    <!-- Empty state -->
+    <div id="emptyState" class="empty-state hidden">
+      <img src="https://raw.githubusercontent.com/OZ-00MS/source/refs/heads/main/space%20a/84977.png" alt="Note book">
+      <h2>No notes yet</h2>
+      <p>Start by creating your first note</p>
+      <button id="emptyStateNewNoteBtn">Create your first note</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+        
+        <script src="main.js" async defer></script>
+    </body>
+</html>
